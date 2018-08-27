@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+   <% if alert %>
+    <p class="alert bg-warning"><%= alert %></p>
+  <% end %>
+  <% if !current_page?(root_url) %>
+    <%= link_to 'Home', root_path, :class => 'navbar-link btn btn-info navbar-btn' %>
+    <nav class="nav navbar-dark bg-primary">
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <div class="btn btn-success navbar-btn"><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></div> |
+        <div class="btn btn-info navbar-btn"><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></div>
+      <% else %>
+        <div class="btn btn-default navbar-btn"><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></div> |
+        <div class="btn btn-default navbar-btn"><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></div>
+      <% end %>
+    </nav>
+  <% end %>
+
+<%= yield %>
+
+
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+</body>
+</html>
