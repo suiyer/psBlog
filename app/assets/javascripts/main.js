@@ -1,9 +1,8 @@
-navigator.geolocation.getCurrentPosition((location) => {
-    console.log(location);
+
     $.ajax({
   url: 'api/v1/weather',
   type: 'GET',
-  data: { lat: location.coords.latitude, lng: location.coords.longitude } ,
+  data: { lat: 37.774929, lng: -122.419418 } ,
   contentType: 'application/json; charset=utf-8',
   success: function (response) {
       if ($('.weather').length) {
@@ -17,8 +16,7 @@ navigator.geolocation.getCurrentPosition((location) => {
     console.log(error);
   }
 });
-    
-})
+
 
 
 
